@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    protected $fillable = ['name'];
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
