@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use Crm\Customer\Events\CustomerCreation;
+use Crm\Customer\Listeners\NotifySalesOnCustomerCreation;
+use Crm\Customer\Listeners\ProjectCreationEmail;
+
+use Crm\Project\Events\ProjectCreation;
+
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        CustomerCreation::class=>[
+            NotifySalesOnCustomerCreation::class
+        ],
+        ProjectCreation::class => [
+            ProjectCreationEmail::class
+        ]
     ];
 
     /**

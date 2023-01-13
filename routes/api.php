@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\ProjectController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,11 @@ Route::patch('/customers/{customerId}/notes/{id}', [NoteController::class, 'upda
 Route::delete('/customers/{customerId}/notes/{id}', [NoteController::class, 'delete']);
 Route::get('/customers/{customerId}/notes/{id}', [NoteController::class, 'showById']);
 Route::get('/customers/{customerId}/notes', [NoteController::class, 'index']);
+
+
+
+// Route::patch('/customers/{customerId}/projects/{id}', [ProjectController::class, 'update']);
+// Route::delete('/customers/{customerId}/projects/{id}', [ProjectController::class, 'delete']);
+// Route::get('/customers/{customerId}/projects/{id}', [ProjectController::class, 'showById']);
+Route::post('/customers/{customerId}/projects', [ProjectController::class, 'create']);
+Route::get('/customers/{customerId}/projects', [ProjectController::class, 'index']);

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
+use Crm\Customer\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+
 
 class NoteController extends Controller
 {
@@ -33,14 +34,14 @@ class NoteController extends Controller
         if(!$note){
             return response()->json(['status'=>"Not founded"], Response::HTTP_NOT_FOUND);
         }
-        if($note->customer_id !== $customerId){
+        if($note->customer_id != $customerId){
             return response()->json(['status'=>"Invalid Date"], Response::HTTP_BAD_REQUEST);
             
         }
 
-        $note->name = $request->name;
+        $note->note = $request->note;
         $note->save();
-        return response()->json(["Status"=>"Updated Successfully"], Response::HTTP_OK);
+        return [response()->json(["Status"=>"Updated Successfully"], Response::HTTP_OK), $note];
     }
 
     public function delete(Request $request,$customerId ,$id){
